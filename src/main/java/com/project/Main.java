@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -24,32 +25,44 @@ public class Main {
     }
 
     static void searchingByRequest(List<Company> companies) {
-        try (Scanner scanner = new Scanner(new File("Requests.txt"))) {
-            int requestIndex = 1;
-            FileWriter logFile =
-                    new FileWriter(new File("Logfile.txt"), true);
-            FileWriter outputFile =
-                    new FileWriter(new File("Request" + requestIndex + ".csv"));
+        int requestIndex = 1;
+        try (Scanner scanner = new Scanner(new File("Requests.txt"));
+             FileWriter logFile =
+                new FileWriter(new File("Logfile.txt"), true)) {
             List<Company> result = new ArrayList<>();
-            String category;
             RequestsManager manager = new RequestsManager(companies);
-//                logWriting(logFile, request, result.size());
-//                fileWriting(outputFile, result);
-//                requestIndex++;
-            logFile.close();
-            outputFile.close();
+            while (scanner.hasNext()) {
+                String request = scanner.nextLine().toLowerCase();
+                if (request.contains((KeyWords.ABBREVIATION).toLowerCase())) {
+                    result = manager.chooseCompaniesByAbbreviation(
+                            request.substring(request.indexOf("= ") + 2));
+                } else if (request.contains((KeyWords.TYPE_OF_BUSINESS).toLowerCase())) {
+                    result = manager.chooseCompaniesByTypeOfBusiness(
+                            request.substring(request.indexOf("= ") + 2));
+                } else if (request.contains((KeyWords.EMPLOYEES_AMOUNT).toLowerCase())) {
+                    result = manager.chooseCompaniesByEmployeesAmount(
+                            Integer.parseInt(request.substring(
+                                    (request.indexOf("from: ") + 6), request.indexOf("to:") - 1)),
+                            Integer.parseInt(request.substring(request.indexOf("to: ") + 4)));
+                }
+                logWriting(logFile, request);
+                FileWriter outputFile =
+                        new FileWriter(new File("Request" + requestIndex + ".csv"));
+                fileWriting(outputFile, result);
+                outputFile.close();
+                requestIndex++;
+            }
         } catch (Exception ex) {
             System.out.println(ex.getLocalizedMessage());
         }
     }
 
-    static void logWriting(FileWriter logFile, String request,
-                           int amountFound) throws IOException {
+    static void logWriting(FileWriter logFile, String request) throws IOException {
         SimpleDateFormat formatNow = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
         Date now = new Date();
+        //LocalDateTime.now()
         logFile.write("Date and time of running: " + formatNow.format(now) + "\n");
         logFile.write("Request: " + request + "\n");
-        logFile.write("Amount of matching notes: " + amountFound + "\n");
     }
 
     static void fileWriting(FileWriter outputFile,

@@ -13,7 +13,7 @@ public class Company {
     private Date updateDate;
     private String address;
     private Date foundationDate;
-    private int numberOfEmployees;
+    private int employeesAmount;
     private String auditor;
     private String phoneNumber;
     private String email;
@@ -31,7 +31,7 @@ public class Company {
         updateDate = format.parse(words[2]);
         address = words[3];
         foundationDate = format.parse(words[4]);
-        numberOfEmployees = Integer.parseInt(words[5]);
+        employeesAmount = Integer.parseInt(words[5]);
         auditor = words[6];
         phoneNumber = words[7];
         email = words[8];
@@ -49,7 +49,7 @@ public class Company {
                 ", updateDate=" + format.format(updateDate) +
                 ", address='" + address + '\'' +
                 ", foundationDate=" + format.format(foundationDate) +
-                ", numberOfEmployees=" + numberOfEmployees +
+                ", numberOfEmployees=" + employeesAmount +
                 ", auditor='" + auditor + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", email='" + email + '\'' +
@@ -64,7 +64,7 @@ public class Company {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Company company = (Company) o;
-        return numberOfEmployees == company.numberOfEmployees &&
+        return employeesAmount == company.employeesAmount &&
                 Objects.equals(companyName, company.companyName) &&
                 Objects.equals(abbreviation, company.abbreviation) &&
                 Objects.equals(updateDate, company.updateDate) &&
@@ -81,7 +81,7 @@ public class Company {
     @Override
     public int hashCode() {
         return Objects.hash(companyName, abbreviation, updateDate,
-                address, foundationDate, numberOfEmployees,
+                address, foundationDate, employeesAmount,
                 auditor, phoneNumber, email, industry, typeOfBusiness, link);
     }
 
@@ -105,8 +105,8 @@ public class Company {
         this.foundationDate = foundationDate;
     }
 
-    public void setNumberOfEmployees(int amount) {
-        this.numberOfEmployees = amount;
+    public void setEmployeesAmount(int amount) {
+        this.employeesAmount = amount;
     }
 
     public void setAuditor(String name) {
@@ -153,8 +153,8 @@ public class Company {
         return this.foundationDate;
     }
 
-    public int getNumberOfEmployees() {
-        return this.numberOfEmployees;
+    public int getEmployeesAmount() {
+        return this.employeesAmount;
     }
 
     public String getAuditor() {

@@ -1,7 +1,6 @@
 package com.project;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class RequestsManager {
@@ -31,12 +30,12 @@ public class RequestsManager {
         return requestedComp;
     }
 
-    public List<Company> chooseCompaniesByNumberOfEmployees(
+    public List<Company> chooseCompaniesByEmployeesAmount(
             int from, int to) {
         List<Company> requestedComp = new ArrayList<>();
         for (Company company : companies) {
-            if ((company.getNumberOfEmployees() >= from) &&
-                    (company.getNumberOfEmployees() <= to)) {
+            if ((company.getEmployeesAmount() >= from) &&
+                    (company.getEmployeesAmount() <= to)) {
                 requestedComp.add(company);
             }
         }
