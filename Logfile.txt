@@ -152,3 +152,15 @@ Date and time of running: 29.10.2020 19:17:21
 Request: select from company_table where typeofbusiness = provider
 Date and time of running: 29.10.2020 19:17:21
 Request: select from company_table where employeesamount from: 0 to: 60
+Date and time of running: 20.11.2020 13:14:53
+Request: select from company_table where abbreviation = ww
+Date and time of running: 20.11.2020 13:14:54
+Request: select from company_table where typeofbusiness = provider
+Date and time of running: 20.11.2020 13:14:54
+Request: select from company_table where employeesamount from: 0 to: 60
+Date and time of running: 20.11.2020 13:16:45
+Request: select from company_table where abbreviation = ww
+Date and time of running: 20.11.2020 13:16:45
+Request: select from company_table where typeofbusiness = provider
+Date and time of running: 20.11.2020 13:16:45
+Request: select from company_table where employeesamount from: 0 to: 60

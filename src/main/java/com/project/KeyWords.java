@@ -5,6 +5,6 @@ public class KeyWords {
     public static final String TYPE_OF_BUSINESS = "typeOfBusiness";
     public static final String EMPLOYEES_AMOUNT = "employeesAmount";
 
-    public KeyWords() {
+    private KeyWords() {
     }
 }
